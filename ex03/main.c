@@ -4,13 +4,24 @@
 
 void    wait_x_cpu_clocks(int cpu_clocks)
 {
-    while (cpu_clocks)
-        cpu_clocks--;
+	while (cpu_clocks)
+		cpu_clocks-=2;
 }
 
-int     main()
+void	custom_delay(int milli)
 {
-    DDRB |= (1 << PIN3);
-    PORTB ^= (1 << PIN3);
-    return (0);
+	//milli = 0,001s
+	milli = milli *	16000;
+	wait_x_cpu_clocks(milli - 2);
+}
+
+int		main()
+{
+	DDRB |= (1 << PIN3);
+	while (true)
+	{
+		PORTB ^= (1 << PIN3);
+		custom_delay(500);
+	}
+	return (0);
 }
