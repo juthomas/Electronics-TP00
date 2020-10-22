@@ -9,6 +9,25 @@ COMPILE    = avr-gcc -Wall -Os -mmcu=$(DEVICE) -DF_CPU=${F_CPU}
 all: hex flash
 
 coffee: hex flash clean
+	@echo ""
+	@echo "         {"
+	@echo "      {   }"
+	@echo "       }\0033[1;34m_\0033[1;37m{ \0033[1;34m__\0033[1;37m{"
+	@echo "    \0033[1;34m.-\0033[1;37m{   }   }\0033[1;34m-."
+	@echo "   \0033[1;34m(   \0033[1;37m}     {   \0033[1;34m)"
+	@echo "   \0033[1;34m| -.._____..- |"
+	@echo "   |             ;--."
+	@echo "   |            (__  \ "
+	@echo "   |             | )  )"
+	@echo "   |   \0033[1;96mCOFFEE \0033[1;34m   |/  / "
+	@echo "   |             /  / "
+	@echo "   |            (  / "
+	@echo "   \             | "
+	@echo "     -.._____..- "
+	@echo ""
+	@echo ""
+	@echo "\0033[1;32m\033[3CTake Your Coffee"
+	@echo "\0033[1;37m"
 
 hex:
 	$(COMPILE) -c $(FILENAME).c -o $(FILENAME).o
