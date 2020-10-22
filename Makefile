@@ -26,7 +26,8 @@ coffee: hex flash clean
 	@echo "     -.._____..- "
 	@echo ""
 	@echo ""
-	@echo "\0033[1;32m\033[3CTake Your Coffee"
+	@echo "\0033[1;32m\033[3C    Take Your Coffee"
+	@echo "\0033[1;32m\033[3CAnd Your Microcontroller"
 	@echo "\0033[1;37m"
 
 hex:
