@@ -3,7 +3,7 @@
 
 int main()
 {
-    DDRB |= (1 << PIN3);
-    PORTB |= (1 << PIN3);
-    return (0);
+	DDRB |= (1 << PIN3);
+	PORTB |= (1 << PIN3);
+	return (0);
 }

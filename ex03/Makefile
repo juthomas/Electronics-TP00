@@ -1,10 +1,10 @@
-FILENAME   = main
-PORT       = /dev/cu.usbserial-00000000
-DEVICE     = atmega328p
-PROGRAMMER = arduino
-BAUD       = 115200
-F_CPU      = 16000000 #16 Mhz quartz
-COMPILE    = avr-gcc -Wall -Os -mmcu=$(DEVICE) -DF_CPU=${F_CPU}
+FILENAME	= main
+PORT		= /dev/cu.usbserial-00000000
+DEVICE		= atmega328p
+PROGRAMMER	= arduino
+BAUD		= 115200
+F_CPU		= 16000000 #16 Mhz quartz
+COMPILE		= avr-gcc -Wall -Os -mmcu=$(DEVICE) -DF_CPU=${F_CPU}
 
 all: hex flash
 
