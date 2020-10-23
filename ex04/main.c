@@ -37,16 +37,28 @@ void	custom_delay(int milli)
 int		main()
 {
 	DDRB |= (1 << PIN3);
+	// DDRD &= (0 << PIN3);
+	DDRD = 0b00000000;
+
 	// DDRB |= (1 << PIN2);
 	PORTB &= (0 << PIN3);
 	// PORTB |= (1 << PIN2);
 
-	// PORTB = 0b00001100;
+	// PORTD = 0b00000000;
 
 	for(;;)
 	{
-		wait_x_cpu_clocks(1000000);
-	 	PORTB ^= (1 << PIN3);
+		if (!(PIND & (1 << PIN3)))
+		{
+			// PORTB = 0b00000000;
+			PORTB |= (1 << PIN3);
+		}
+		else
+		{
+			PORTB &= (0 << PIN3);
+
+		}
+		
 	}
 	return (0);
 }
