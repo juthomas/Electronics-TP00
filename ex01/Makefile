@@ -1,10 +1,11 @@
 FILENAME	= main
-PORT		= /dev/cu.usbserial-00000000
+PORT		= /dev/cu.SLAB_USBtoUART
 DEVICE		= atmega328p
 PROGRAMMER	= arduino
 BAUD		= 115200
 F_CPU		= 16000000 #16 Mhz quartz
-COMPILE		= avr-gcc -Wall -Os -mmcu=$(DEVICE) -DF_CPU=${F_CPU}
+COMPILE		= avr-gcc -Wall -mmcu=$(DEVICE) -DF_CPU=${F_CPU}
+COLOR		= \0033[1;35m
 
 all: hex flash
 
