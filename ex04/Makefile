@@ -3,7 +3,7 @@ PORT		= /dev/cu.SLAB_USBtoUART
 DEVICE		= atmega328p
 PROGRAMMER	= arduino
 BAUD		= 115200
-F_CPU		= 16000000 #16 Mhz quartz
+F_CPU		= 16000000 #16 Mhz quartz #2 Mhz Cpu Clock (Quartz / 8)
 COMPILE		= avr-gcc -Wall -mmcu=$(DEVICE) -DF_CPU=${F_CPU}
 COLOR		= \0033[1;35m
 
@@ -51,4 +51,4 @@ clean:
 	@rm $(FILENAME).bin
 	@echo "$(COLOR)Binaries \033[100D\033[40C\0033[1;32m[Removed]\0033[1;37m"
 	@rm $(FILENAME).hex
-	@echo "$(COLOR)f̴̨͇̬͔̹̹͎̪͐͛̍̎͒͗̽̇̽ȯ̵̢̱̻̭̤̬̥̯̿̅̌͋̈̔̊́͝r̸͕͔̘̎̓͒b̵̡̡͇͖̭͎̭̪̱̻̻̻͖̑́ì̴̟̭̠͍͓̈͂d̷͚̰̟͎͕͓̠̪̳̲͎̫͌̐̎̈̔̀̎̃͝ḍ̴̪̦̻͕̠̒̀̈͆̂̚ͅe̴̩̺̍͌́ͅͅn̵̛͖͓̣̜̻̫̔͛̓̾̈̓̀́͝ ̴̟͉̎̏̏͌͌̒̃̈́̓̂̐̓͂̀̕k̶̨̭̱̲̞̪͓̟̗̼͍̦̗̦̏́͜ǹ̷͆͐̀̀͆̓͘̕͜͠͝o̴̡̡̨͉͔̬̪̪͚̝̎̐̈́̌̅͒̂w̸͉̗̣̅̔̐̏͆͌̈l̵̡̻̹͕͓̱̠͚̺͗̈́̽̅̔ͅę̴̧̛̰̞̙̯̝̖̠̻̣̖̹̺̦͒͗̎̔̈͊͊̈́́̔ḍ̸̨̺̟̲̗̠͈̭͎͖͖̰̠̽g̵̡̨͎̲̃̈́͋e̷̬̺̤̳̰̰̍̍͛̓͘ \033[100D\033[40C\0033[1;32m[Exortized]\0033[1;37m"
+	@echo "$(COLOR)F̵̥̣͌o̸̘͍̐̓ŕ̸͙b̵̭͑i̶̢̼͒d̵͖̽̚d̶̙̋ē̴̠̤͛ṉ̴̜͘ ̶̪̾̆ķ̷̝̅͝ñ̴̯̚o̷͚͌w̶̼͠ḻ̴͒͝ḛ̵͙̈d̵̪̹̏͝ǵ̴͎̏e̶͔̦͆ \033[100D\033[40C\0033[1;32m[Exortized]\0033[1;37m"
