@@ -1,6 +1,4 @@
 #include <avr/io.h>
-#define PIN3 3
-#define PIN2 2
 #define CPU_CLOCK 2000000
 
 void	wait_x_cpu_clocks(int32_t cpu_clocks)
@@ -11,7 +9,7 @@ void	wait_x_cpu_clocks(int32_t cpu_clocks)
 	}
 }
 
-void	custom_delay(int milli)
+void	custom_delay(int32_t milli)
 {
 	//milli = 0,001s
 	milli = milli *	2000;
@@ -20,7 +18,7 @@ void	custom_delay(int milli)
 
 int		main()
 {
-	DDRB |= (1 << PIN3);
+	DDRB |= (1 << 3);
 	//Reverse led
 	// DDRB |= (1 << PIN2);
 	DDRD = 0b00000000;
@@ -28,12 +26,12 @@ int		main()
 
 	for(;;)
 	{
-		if ((PIND & (1 << PIN3)))
+		if ((PIND & (1 << 3)))
 		{
 			//Reverse led
 			// PORTB ^= (1 << PIN2);
-			while ((PIND & (1 << PIN3)));
-			PORTB ^= (1 << PIN3);
+			while ((PIND & (1 << 3)));
+			PORTB ^= (1 << 3);
 			custom_delay(200);
 		}
 		
