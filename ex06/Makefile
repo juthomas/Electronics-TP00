@@ -7,6 +7,8 @@ F_CPU		= 16000000 #16 Mhz quartz #2 Mhz Cpu Clock (Quartz / 8)
 COMPILE		= avr-gcc -Wall -mmcu=$(DEVICE) -DF_CPU=${F_CPU}
 COLOR		= \0033[1;35m
 
+MUTE		= TRUE
+
 all: hex flash
 
 coffee: hex flash clean
@@ -37,34 +39,6 @@ hex:
 	@$(COMPILE) -o $(FILENAME).bin $(FILENAME).o
 	@echo "$(COLOR)Binary \033[100D\033[40C\0033[1;32m[Created]\0033[1;37m"
 	@avr-objcopy -j .text -j .data -O ihex $(FILENAME).bin $(FILENAME).hex
-	@echo "$(COLOR)Satanic Circle \033[100D\033[40C\0033[1;32m[D̴̮̬͊̾r̶̟̫̿a̴̬̟͛̈́w̴̻̍̌ê̶̤̚d̴̛̟̺]\0033[1;37m"
-	@avr-size --format=avr --mcu=$(DEVICE) $(FILENAME).bin
-	@echo "$(COLOR)Black Magic \033[100D\033[40C\0033[1;32m[I̶̢͇͎͉͙͒̉n̸̛͖̣͒̓͒̊͆̉͜v̶̰̉̀́̓͠ǒ̵̜̰̝̼̤͉k̴͎̠̪͙̐̈́̔͑̇e̶̖̰͘d̸̻͛͊̎̀͒̚]\0033[1;37m"
-
-flash:
-	@avrdude -v -p $(DEVICE) -c $(PROGRAMMER) -P $(PORT) -b $(BAUD) -U flash:w:$(FILENAME).hex:i
-	@echo "$(COLOR)$(DEVICE) \033[100D\033[40C\0033[1;32m[Flashed]\0033[1;37m"
-
-draw2:
-	@echo "\033[1;91m            ______             "
-	@echo "       .d###******####c.       "
-	@echo "    .d#P             ##c       "
-	@echo "   #####.           .###*#.    "
-	@echo " .## 4#L*##.     .##Pd#   #b   "
-	@echo " #F   *#.  ##e.e##  4#F   ^#b  "
-	@echo "d#     ##   z###e   ##      #. "
-	@echo "#P      #L##P    ##d#       ## "
-	@echo "##     e##F       4##b.     ## "
-	@echo "#b  .##  ##      .##  4#b.  ## "
-	@echo "##e#P     #b     d#      ##c#F "
-	@echo " #P##########################  "
-	@echo "  #c.      4#.  ##       .##   "
-	@echo "  ^##.      ## d#       d#P    "
-	@echo "     ##c.    #b#F    .d#P      "
-	@echo "       4###c.###..e##P         "
-	@echo "           ^^^^^^^             \0033[1;37m"
-
-draw:
 	@echo "\033[1;91m            _̷̛̮_̶͉͌̾_̵̠̅͌_̸̰̑̄ͅ_̶̛͙̱̈_̵̦̩͌̈́             "
 	@echo "       .̴̩́d̷͇̼͗̉#̸̤̲̏#̵̭͇̂#̸̥̾̿*̸̗͊*̸͎̣͛*̷͍̻͋͑*̸̻̍*̶̰͉̾̇*̸͙̩̀#̷͉͗̈#̶̞̉#̶̯̲͗̓#̵͖̼̌͊c̵̩͎̑͠.̴       "
 	@echo "    .̴̳̔̊d̴̻͐͠ͅ#̸̢̓P̸̨͊̄͜             #̴͖̙͒#̶̧̓#̷̝͗c̵͙͛      "
@@ -82,12 +56,24 @@ draw:
 	@echo "     #̵̺̐#̸̣͕̓͌c̴̫͙̀.̴̲̆    #̴̪͂͝b̴̤͒̾#̴̰̜̄̽F̴̯̄̀    .̴̪͑̚d̷̝̕#̷̭̣͐̔P̶͙̩̈́͑      "
 	@echo "       4̴͚̌#̸̤̖̀͝#̷̩̔#̴̺̒c̷͖̝̾.̶̫̈̓#̷̣̲̊#̴̬̈́ͅ#̵̱̓̍ͅ.̵̛̜̺́.̵̡͝e̴̱̰͛#̶̫̒̆#̷̬͆Ṕ̸̮̋         "
 	@echo "           ^̵͓̘̃͠^̶̖̣̈̈^̴̠̀͊^̸̛̱́^̶̤̀^̸̪̗̐^̶̜̦͂̚             \0033[1;37m"
+	@echo "$(COLOR)Satanic Circle \033[100D\033[40C\0033[1;32m[D̴̮̬͊̾r̶̟̫̿a̴̬̟͛̈́w̴̻̍̌ê̶̤̚d̴̛̟̺]\0033[1;37m"
+	@if [ $(MUTE) = FALSE ];then\
+		avr-size --format=avr --mcu=$(DEVICE) $(FILENAME).bin;\
+	fi
 
+flash:
+	@if [ $(MUTE) = FALSE ];then\
+		avrdude  -p $(DEVICE) -c $(PROGRAMMER) -P $(PORT) -b $(BAUD) -U flash:w:$(FILENAME).hex:i;\
+	else\
+		avrdude  -p $(DEVICE) -c $(PROGRAMMER) -P $(PORT) -b $(BAUD) -U flash:w:$(FILENAME).hex:i  -l /dev/null;\
+	fi
+	@echo "$(COLOR)Black Magic \033[100D\033[40C\0033[1;32m[I̶̢͇͎͉͙͒̉n̸̛͖̣͒̓͒̊͆̉͜v̶̰̉̀́̓͠ǒ̵̜̰̝̼̤͉k̴͎̠̪͙̐̈́̔͑̇e̶̖̰͘d̸̻͛͊̎̀͒̚]\0033[1;37m"
+	@echo "$(COLOR)$(DEVICE) \033[100D\033[40C\0033[1;32m[Flashed]\0033[1;37m"
 
 clean:
 	@rm $(FILENAME).o
-	@echo "$(COLOR)Objects \033[100D\033[40C\0033[1;32m[Removed]\0033[1;37m"
+	@echo "$(COLOR)Objects \033[100D\033[40C\0033[1;31m[Removed]\0033[1;37m"
 	@rm $(FILENAME).bin
-	@echo "$(COLOR)Binaries \033[100D\033[40C\0033[1;32m[Removed]\0033[1;37m"
+	@echo "$(COLOR)Binaries \033[100D\033[40C\0033[1;31m[Removed]\0033[1;37m"
 	@rm $(FILENAME).hex
-	@echo "$(COLOR)F̵̥̣͌o̸̘͍̐̓ŕ̸͙b̵̭͑i̶̢̼͒d̵͖̽̚d̶̙̋ē̴̠̤͛ṉ̴̜͘ ̶̪̾̆ķ̷̝̅͝ñ̴̯̚o̷͚͌w̶̼͠ḻ̴͒͝ḛ̵͙̈d̵̪̹̏͝ǵ̴͎̏e̶͔̦͆ \033[100D\033[40C\0033[1;32m[Exortized]\0033[1;37m"
+	@echo "$(COLOR)F̵̥̣͌o̸̘͍̐̓ŕ̸͙b̵̭͑i̶̢̼͒d̵͖̽̚d̶̙̋ē̴̠̤͛ṉ̴̜͘ ̶̪̾̆ķ̷̝̅͝ñ̴̯̚o̷͚͌w̶̼͠ḻ̴͒͝ḛ̵͙̈d̵̪̹̏͝ǵ̴͎̏e̶͔̦͆ \033[100D\033[40C\0033[1;31m[Exortized]\0033[1;37m"
