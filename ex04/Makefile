@@ -63,7 +63,7 @@ hex:
 
 flash:
 	@if [ $(MUTE) = FALSE ];then\
-		avrdude  -p $(DEVICE) -c $(PROGRAMMER) -P $(PORT) -b $(BAUD) -U flash:w:$(FILENAME).hex:i;\
+		avrdude -v -p $(DEVICE) -c $(PROGRAMMER) -P $(PORT) -b $(BAUD) -U flash:w:$(FILENAME).hex:i;\
 	else\
 		avrdude  -p $(DEVICE) -c $(PROGRAMMER) -P $(PORT) -b $(BAUD) -U flash:w:$(FILENAME).hex:i  -l /dev/null;\
 	fi
@@ -71,9 +71,9 @@ flash:
 	@echo "$(COLOR)$(DEVICE) \033[100D\033[40C\0033[1;32m[Flashed]\0033[1;37m"
 
 clean:
-	@rm $(FILENAME).o
+	@rm -f $(FILENAME).o
 	@echo "$(COLOR)Objects \033[100D\033[40C\0033[1;31m[Removed]\0033[1;37m"
-	@rm $(FILENAME).bin
+	@rm -f $(FILENAME).bin
 	@echo "$(COLOR)Binaries \033[100D\033[40C\0033[1;31m[Removed]\0033[1;37m"
-	@rm $(FILENAME).hex
+	@rm -f $(FILENAME).hex
 	@echo "$(COLOR)F̵̥̣͌o̸̘͍̐̓ŕ̸͙b̵̭͑i̶̢̼͒d̵͖̽̚d̶̙̋ē̴̠̤͛ṉ̴̜͘ ̶̪̾̆ķ̷̝̅͝ñ̴̯̚o̷͚͌w̶̼͠ḻ̴͒͝ḛ̵͙̈d̵̪̹̏͝ǵ̴͎̏e̶͔̦͆ \033[100D\033[40C\0033[1;31m[Exortized]\0033[1;37m"
